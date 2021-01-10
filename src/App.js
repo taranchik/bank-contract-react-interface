@@ -3,7 +3,8 @@ import './App.css';
 
 import Web3 from 'web3'; 
 var web3;
-const contractAddress = '0x2419bB4003E2dAA02512c5F3858E700598F9e945';
+// the old one - 0x2419bB4003E2dAA02512c5F3858E700598F9e945
+const contractAddress = '0xd9145CCE52D386f254917e481eB44e9943F39138';
 
 const abi = [
   {
@@ -216,7 +217,7 @@ class App extends Component
 
   handleKeyEnter = async (event) => {
     // check the key, if it is enter
-    if (event.keyCode === 13 && this.state.selectedOption != ''){
+    if (event.keyCode === 13 && this.state.selectedOption !== ''){
       // hide the window, while data will be processed
       this.setState({ _isRendered: false });
       alert("Please, wait while the transaction is being processed");
@@ -248,7 +249,7 @@ class App extends Component
         case 'check-paid-back':
           await this.bankContract.methods.isBorrowerTransferEtherAtTime(args).send({from: this.state.lender});
           res = await this.bankContract.methods.getLoanState(args).call({from: this.state.lender});
-          if(res == false){
+          if(res === false){
             alert("The borrower overdue loan repayment date");
           }
           else{
@@ -265,6 +266,8 @@ class App extends Component
           break;
         case 'pay-back-loan':
           await this.bankContract.methods.payBackLoan(args).send({from: this.state.borrower, gas: 500000, value: this.etherAmount});
+          break;
+        default:
           break;
       }
       this.setState({ _isRendered: true });

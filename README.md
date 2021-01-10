@@ -1,68 +1,128 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bank smart contract user interface
 
-## Available Scripts
+![Project Image](https://i.ibb.co/wWDJrzJ/image.png)
 
-In the project directory, you can run:
+> User interface for the Bank smart contract application.
 
-### `npm start`
+---
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Table of Contents
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- [Description](#description)
+- [How To Use](#how-to-use)
+- [References](#references)
+- [License](#license)
+- [Author Info](#author-info)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Description
 
-### `npm run build`
+There is a user interface for the Bank smart contract application.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It is becoming increasingly harder for younger and low income individuals to get loans from banks. At the
+same time current interest rates on savings are low, and many would like to be able to invest in areas that
+provide higher returns (which would also entail higher risk). Decentralised lending to anonymous individuals
+is very risky. A company wants to implement a Peer-to-Peer (P2P) lending system which allows for trusted
+third parties to provide guarantees for specific borrowers in exchange for a cut of the interest paid back by
+the borrower.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The following functionality encoded within:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+• Individuals looking for loans can make a request for a loan by inputting the following details: the amount of Ether they would like to borrow, the date by which they promise to pay back the full amount, and the interest in Ether they promise to pay back upon paying back the full amount.
 
-### `npm run eject`
+• Third-party guarantors can choose to provide a guarantee that the amount being requested by the borrower will be paid back to the lender by sending the amount of Ether being requested by the borrower. This amount is to be sent into the smart contract after individuals have made a request for loans, and before borrowers have granted a loan. The guarantor must also specify the amount of interest in Ether they will keep from the amount to be paid by the borrower. Once a guarantee is placed, the borrower must accept or reject the guarantee. Rejecting the guarantee will result in the guarantor’s money being returned to the guarantor.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+• Lenders should be able to view: (i) the current requests for loans; (ii) whether a guarantee has been placed on a specific request; (iii) the guarantor’s address (this address could then be translated into
+a third party’s identity off-chain); and (iv) the amount of interest in Ether that the lender will make once the full amount is paid (i.e. the full interest amount less the amount of interest that the guarantor
+will keep).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+• A lender can then chose to provide the loan by sending the appropriate Ether along with identification of the specific loan request they are sending funds for. The funds should be sent to the borrower at this point.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+• If a lender does not receive the full loan amount and the expected interest by the date agreed upon, then the lender can withdrawn the guarantee placed by the guarantor.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+• If the borrower pays back the full loan amount and the full interest amount then: (i) the guarantor’s funds should immediately be sent back to the guarantor along with the interest amount to be sent to
+the guarantor; and (ii) the lender should receive the full loan amount along with the amount of interest due to the lender.
 
-## Learn More
+The contract stipulates that users cannot abuse the functionality in any way.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[Back To The Top](#bank-smart-contract-user-interface)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## How To Use
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+#### Installation
 
-### Analyzing the Bundle Size
+`WARNING!!! Installation guide assuming that you already have installed Node Package Manager and MetaMask extension in your browser. `
+`Also highly recommended to paste yours contract address instead of the current contract address in the App.js.`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+1. Clone the repository.
 
-### Making a Progressive Web App
+```
+git clone https://github.com/taranchik/bank-contract-react-interface
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+2. Run the following command in order to install required packages.
 
-### Advanced Configuration
+```
+npm install
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+3.  Start the Bank smart contract application with a user interface.
 
-### Deployment
+```
+npm start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+4. Sign in to your MetaMask account.
 
-### `npm run build` fails to minify
+![metamask-login](https://i.ibb.co/5kX14x7/image.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Switching between accounts in the MetaMask will cause the role of the current account in the application to change.
+
+![metamask-switch-account-borrower](https://i.ibb.co/wWDJrzJ/image.png)
+![metamask-switch-account-guarantor](https://i.ibb.co/mBLbGmy/image.png)
+
+[Back To The Top](#bank-smart-contract-user-interface)
+
+---
+
+## References
+
+[Installation guide of the Node Package Manager](https://www.npmjs.com/get-npm)
+
+[Solidity programming language](https://solidity.readthedocs.io/en/v0.7.4/)
+
+[REMIX IDE](https://remix.ethereum.org/)
+
+[MetaMask](https://metamask.io/)
+
+[Back To The Top](#bank-smart-contract-user-interface)
+
+---
+
+## License
+
+MIT License
+
+Copyright (c) [2021] [Viacheslav Taranushenko]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[Back To The Top](#bank-smart-contract-user-interface)
+
+---
+
+## Author Info
+
+- LinkedIn - [Viacheslav Taranushenko](https://www.linkedin.com/in/viacheslav-taranushenko-727466187/)
+- GitHub - [@taranchik](https://github.com/taranchik)
+- GitLab - [@taranchik](https://gitlab.com/taranchik)
+- Twitter - [@viataranushenko](https://twitter.com/viataranushenko)
+
+[Back To The Top](#bank-smart-contract-user-interface)
